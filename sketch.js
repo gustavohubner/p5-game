@@ -8,6 +8,10 @@ function setup() {
   document.addEventListener('touchstart', handleTouchStart, false);
   document.addEventListener('touchmove', handleTouchMove, false);
 
+  Hammer(document).on("tap", function() {
+    move('click');
+  });
+
   var xDown = null;
   var yDown = null;
 
@@ -250,21 +254,19 @@ function drawTouchControls() {
   // ⭯
 
 }
-
 function getTouches(evt) {
   return evt.touches ||             // browser API
     evt.originalEvent.touches; // jQuery
 }
-
 function handleTouchStart(evt) {
   const firstTouch = getTouches(evt)[0];
   xDown = firstTouch.clientX;
   yDown = firstTouch.clientY;
 };
-
 function handleTouchMove(evt) {
   if (!xDown || !yDown) {
     return;
+
   }
 
   var xUp = evt.touches[0].clientX;
@@ -290,7 +292,6 @@ function handleTouchMove(evt) {
   xDown = null;
   yDown = null;
 };
-
 function move(direction) {
   let x = piecePos[0], y = piecePos[1];
   if (!lock) {
