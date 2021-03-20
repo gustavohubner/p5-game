@@ -1,20 +1,19 @@
 let grid, colorPallete, offsetX, offsetY, moved, gameover, lock, lnv;
 let size = 30, gap = 2;
 let gridBorder = 2 * gap;
-let piecePos, pieceInGame, count, lvl = 1, speed;
+let piecePos, pieceInGame, count, lvl = 1, speed, slider;
 let score = 0;
 
 function setup() {
   document.addEventListener('touchstart', handleTouchStart, false);
   document.addEventListener('touchmove', handleTouchMove, false);
 
-  Hammer(document).on("tap", function() {
+  Hammer(document).on("tap", function () {
     move('click');
   });
 
   var xDown = null;
   var yDown = null;
-
 
   createCanvas(windowWidth, windowHeight);
   frameRate(60);
@@ -29,6 +28,11 @@ function setup() {
   gameover = false;
   offsetX = width / 2 - 5.5 * (size);
   offsetY = height / 2 - 7 * (size);
+
+  slider = createSlider(0, 60, 0, 1);
+  slider.position(offsetX, offsetY + 13 * (size + 2*gap));
+  slider.style('width', 10.5*size + 'px');
+
   grid = [[]];
   colorPallete = ["black", "turquoise", "chartreuse", "deeppink", "mediumslateblue", "coral", "yellow", "white"];
 
@@ -48,6 +52,7 @@ function setup() {
 function draw() {
   // noLoop();
   if (!gameover) {
+    speed =  60 - slider.value();
     drawGrid();
     moved = false;
     if (count == 0) {
@@ -154,7 +159,6 @@ function keyPressed() {
     loop();
   }
 }
-
 function getMatches() {
   let matches = [];
   for (let x = 0; x < 6; x++) {
