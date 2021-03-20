@@ -271,10 +271,10 @@ function drawTouchControls() {
     3 * (size + gap) - gap, 5);
 
   fill(30);
-  textSize(size*3);
+  textSize(size * 3);
   textAlign(CENTER);
-  text("<",offsetX, offsetY + 13.5 * (gap + size),5 * (size + gap) + gridBorder + gap,
-  3 * (size + gap) );
-  text(">",offsetX + 5 * (gap + size) + gridBorder, offsetY + 13.5 * (gap + size), 6 * (size + gap) + gridBorder + gap,
-  3 * (size + gap) );
+  text("<", offsetX, offsetY + 13.5 * (gap + size), 5 * (size + gap) + gridBorder + gap,
+    3 * (size + gap));
+  text(">", offsetX + 5 * (gap + size) + gridBorder, offsetY + 13.5 * (gap + size), 6 * (size + gap) + gridBorder + gap,
+    3 * (size + gap));
 }
