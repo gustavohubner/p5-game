@@ -83,10 +83,10 @@ function drawGrid() {
 }
 function drawGUI() {
   fill(30);
-  rect(offsetX + 6 * (gap + size) + gridBorder + gap, offsetY - gridBorder, 4 * (size + gap) + gridBorder * 2 - gridBorder,
+  rect(offsetX + 6 * (gap + size) + gridBorder + gap, offsetY - gridBorder, 4 * (size + gap) + gridBorder * 2 - gridBorder- 2*gap,
     6 * (size + gap) + gridBorder * 2 - gap, 5);
   fill(0);
-  rect(offsetX + 6 * (gap + size) + 2*gridBorder + gap, offsetY - gridBorder + gridBorder, 4 * (size + gap) - gridBorder,
+  rect(offsetX + 6 * (gap + size) + 2*gridBorder + gap, offsetY - gridBorder + gridBorder, 4 * (size + gap) - gridBorder - 2*gap,
     6 * (size + gap) - gap, 5);
   fill(60);
   textAlign(LEFT);
