@@ -31,6 +31,7 @@ function setup() {
   }
 
   drawGUI();
+  drawTouchControls();
 }
 
 function draw() {
@@ -89,7 +90,7 @@ function drawGUI() {
     6 * (size + gap) - gap, 5);
   fill(60);
   textAlign(LEFT);
-  text("Score: "+score,offsetX + 7 * (gap + size) + 2*gridBorder, offsetY + gridBorder,3 * (gap + size),(size+gap));
+  text("Score: " + score, offsetX + 7 * (gap + size) + 2 * gridBorder, offsetY + gridBorder, 3 * (gap + size), (size + gap));
 }
 function gravitate() {
   for (let x = 0; x < 6; x++) {
@@ -255,4 +256,25 @@ function getGridPos(pos) {
 function setGridPos(pos, value) {
   let x = pos[0], y = pos[1];
   grid[x][y] = value;
+}
+function drawTouchControls() {
+  fill(30);
+  rect(offsetX - gridBorder, offsetY + 13.5 * (gap + size) - gridBorder, 5 * (size + gap) + gridBorder - gap,
+    3 * (size + gap) + gridBorder * 2 - gap, 5);
+  rect(offsetX + 5 * (gap + size), offsetY + 13.5 * (gap + size) - gridBorder, 5 * (size + gap) + gridBorder * 2 - gap,
+    3 * (size + gap) + gridBorder * 2 - gap, 5);
+
+  fill(0);
+  rect(offsetX, offsetY + 13.5 * (gap + size), 5 * (size + gap) - gridBorder - gap,
+    3 * (size + gap) - gap, 5);
+  rect(offsetX + 5 * (gap + size) + gridBorder, offsetY + 13.5 * (gap + size), 5 * (size + gap) - gridBorder + gap,
+    3 * (size + gap) - gap, 5);
+
+  fill(30);
+  textSize(size*3);
+  textAlign(CENTER);
+  text("<",offsetX, offsetY + 13.5 * (gap + size),5 * (size + gap) + gridBorder + gap,
+  3 * (size + gap) );
+  text(">",offsetX + 5 * (gap + size) + gridBorder, offsetY + 13.5 * (gap + size), 6 * (size + gap) + gridBorder + gap,
+  3 * (size + gap) );
 }
