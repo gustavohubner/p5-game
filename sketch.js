@@ -16,8 +16,8 @@ function setup() {
   lock = false;
 
   gameover = false;
-  offsetX = width / 2 - 6 * size
-  offsetY = height / 2 - 7 * size;
+  offsetX = width / 2 - 5.5 * (size);
+  offsetY = height / 2 - 9 * (size);
   grid = [[]];
   colorPallete = ["black", "turquoise", "chartreuse", "deeppink", "mediumslateblue", "coral", "yellow", "white"];
 
