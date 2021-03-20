@@ -83,10 +83,10 @@ function drawGrid() {
 }
 function drawGUI() {
   fill(30);
-  rect(offsetX + 7 * (gap + size), offsetY - gridBorder, 3 * (size + gap) + gridBorder * 2 - gap,
+  rect(offsetX + 6 * (gap + size) + gridBorder + gap, offsetY - gridBorder, 4 * (size + gap) + gridBorder * 2 - gridBorder,
     6 * (size + gap) + gridBorder * 2 - gap, 5);
   fill(0);
-  rect(offsetX + 7 * (gap + size) + gridBorder, offsetY - gridBorder + gridBorder, 3 * (size + gap) - gap,
+  rect(offsetX + 6 * (gap + size) + 2*gridBorder + gap, offsetY - gridBorder + gridBorder, 4 * (size + gap) - gridBorder,
     6 * (size + gap) - gap, 5);
   fill(60);
   textAlign(LEFT);
@@ -259,22 +259,24 @@ function setGridPos(pos, value) {
 }
 function drawTouchControls() {
   fill(30);
-  rect(offsetX - gridBorder, offsetY + 13.5 * (gap + size) - gridBorder, 5 * (size + gap) + gridBorder - gap,
+  rect(offsetX - gridBorder, offsetY + 13 * (gap + size) + gridBorder + gap, 5 * (size + gap) + gridBorder - gap,
     3 * (size + gap) + gridBorder * 2 - gap, 5);
-  rect(offsetX + 5 * (gap + size), offsetY + 13.5 * (gap + size) - gridBorder, 5 * (size + gap) + gridBorder * 2 - gap,
+  rect(offsetX + 5 * (gap + size), offsetY + 13 * (gap + size) + gridBorder + gap, 5 * (size + gap) + gridBorder * 2 - gap,
     3 * (size + gap) + gridBorder * 2 - gap, 5);
 
   fill(0);
-  rect(offsetX, offsetY + 13.5 * (gap + size), 5 * (size + gap) - gridBorder - gap,
+  rect(offsetX, offsetY + 13 * (gap + size) + 2 * gridBorder + gap, 5 * (size + gap) - gridBorder - gap,
     3 * (size + gap) - gap, 5);
-  rect(offsetX + 5 * (gap + size) + gridBorder, offsetY + 13.5 * (gap + size), 5 * (size + gap) - gridBorder + gap,
+  rect(offsetX + 5 * (gap + size) + gridBorder, offsetY + 13 * (gap + size) + 2 * gridBorder + gap, 5 * (size + gap) - gridBorder + gap,
     3 * (size + gap) - gap, 5);
 
   fill(30);
   textSize(size * 3);
   textAlign(CENTER);
-  text("<", offsetX, offsetY + 13.5 * (gap + size), 5 * (size + gap) + gridBorder + gap,
+  text("<", offsetX, offsetY + 13 * (gap + size)+ gridBorder + gap, 5.5 * (size + gap),
     3 * (size + gap));
-  text(">", offsetX + 5 * (gap + size) + gridBorder, offsetY + 13.5 * (gap + size), 6 * (size + gap) + gridBorder + gap,
+  text(">", offsetX + 5 * (gap + size) + gridBorder, offsetY + 13 * (gap + size)+ gridBorder + gap, 5.5 * (size + gap),
     3 * (size + gap));
+
+  // ⭯
 }
