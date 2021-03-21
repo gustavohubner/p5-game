@@ -3,6 +3,7 @@ let size = 30, gap = 2;
 let gridBorder = 2 * gap;
 let piecePos, pieceInGame, count, lvl = 1, speed, slider;
 let score = 0;
+let deleteAnim, deleteAnimLength, countDel, matches;
 
 function setup() {
   document.addEventListener('touchstart', handleTouchStart, false);
@@ -30,8 +31,12 @@ function setup() {
   offsetY = height / 2 - 7 * (size);
 
   slider = createSlider(0, 60, 0, 1);
-  slider.position(offsetX, offsetY + 13 * (size + 2*gap));
-  slider.style('width', 10.5*size + 'px');
+  slider.position(offsetX, offsetY + 13 * (size + 2 * gap));
+  slider.style('width', 10.5 * size + 'px');
+
+  deleteAnim = false;
+  deleteAnimLength = 60;
+  countDel = deleteAnimLength;
 
   grid = [[]];
   colorPallete = ["black", "turquoise", "chartreuse", "deeppink", "mediumslateblue", "coral", "yellow", "white"];
@@ -46,35 +51,51 @@ function setup() {
   }
 
   drawGUI();
-  // drawTouchControls();
 }
 
 function draw() {
-  // noLoop();
+  drawGrid();
   if (!gameover) {
-    speed =  60 - slider.value();
-    drawGrid();
-    moved = false;
-    if (count == 0) {
-      gravitate();
-      if (!moved) {
-        lock = true;
-        let match = getMatches();
-        if (match.length > 0) {
-          score += match.length * (100 + (2 * lvl));
-          for (let i = 0; i < match.length; i++) {
-            setGridPos(match[i], 0);
+    if (!deleteAnim) {
+      speed = 60 - slider.value();
+      moved = false;
+      if (count == 0) {
+        gravitate();
+        if (!moved) {
+          lock = true;
+          matches = getMatches();
+          if (matches.length > 0) {
+            score += matches.length * (100 + (2 * lvl));
+            // for (let i = 0; i < matches.length; i++) {
+            //   setGridPos(matches[i], 0);
+            // }
+            deleteAnim = true
+            drawGUI();
+          } else {
+            checkGameOver();
+            addPiece();
+            lock = false
           }
-          drawGUI();
-        } else {
-          checkGameOver();
-          addPiece();
-          lock = false
         }
+        count = speed;
+      } else {
+        count--;
       }
-      count = speed;
     } else {
-      count--;
+      if (countDel >= 0) {
+        for (let i = 0; i < matches.length; i++) {
+          setGridPos(matches[i], (floor(countDel / 2) % 7) + 1);
+        }
+        countDel--;
+      } else {
+        for (let i = 0; i < matches.length; i++) {
+          setGridPos(matches[i], 0);
+        }
+        deleteAnim = false;
+        countDel = deleteAnimLength;
+      }
+      drawGUI();
+      print("delete")
     }
   } else {
     fill("red");
